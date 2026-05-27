@@ -31,7 +31,7 @@ const startShutdown = () => {
 };
 useEffect(() => {
     const logs = [
-  "🧠 SYSTEM: user not available (probably overthinking again)",
+  "🧠 MIND: partner not available (probably overthinking again)",
   "💔 HEART.EXE: crashed due to emotional overload",
   "🔍 SEARCHING: looking for better signal…?",
   "💘 CUPID: ‘I swear I had aim assist on’",
@@ -72,7 +72,7 @@ if (progress === 100) {
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center text-white text-2xl">
       <div className="text-center">
-        <p className="animate-pulse">💔 SYSTEM HAS BEEN SHUT DOWN</p>
+        <p className="animate-pulse">💔 HEART HAS BEEN SHUT DOWN</p>
         <p className="text-gray-400 text-sm mt-2">
           All emotional processes terminated successfully
         </p>
@@ -131,7 +131,7 @@ if (progress === 100) {
   <div className="bg-red-500/20 p-4 rounded-xl mb-6">
     <p className="font-bold">WARNING:</p>
     <p className="mt-4 text-lg text-gray-300">
-            System shutdown in: {secondsLeft}s
+            Heart shutdown in: {secondsLeft}s
 </p>
   </div>
 
@@ -148,7 +148,7 @@ if (progress === 100) {
   <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white">
     
     <h1 className="text-3xl font-bold mb-4 animate-pulse">
-      🧠 SYSTEM SHUTDOWN INITIATED
+      🧠 HEART SHUTDOWN INITIATED
     </h1>
 
     <p className="text-gray-300 mb-6">
