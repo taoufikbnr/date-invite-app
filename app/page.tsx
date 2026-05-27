@@ -2,13 +2,8 @@
 
 import {  useState } from "react";
 import { motion } from "framer-motion";
-import { createClient } from "@supabase/supabase-js";
 import confetti from "canvas-confetti";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabase } from "@/lib/supabaseClient";
 
 const activities = [
   { emoji: "🍕", label: "Food Date" },
@@ -181,7 +176,8 @@ const launchConfetti = () => {
           className="bg-white/30 backdrop-blur-lg p-8 rounded-3xl shadow-2xl max-w-2xl w-full"
         >
           <h2 className="text-4xl font-black text-center text-pink-600 mb-8">
-            YAYYYYY I KNEW YOU WILL SAY 
+            <span className="text-purple-700">YAYYYYY</span>  I KNEW YOU WOULD  SAY YES <img width={50} src={"./pedro-monkey-puppet.gif"} alt="monkey" className="inline-block rounded-2xl"
+ />
           </h2>
 
           <div className="space-y-6">
@@ -280,11 +276,12 @@ const launchConfetti = () => {
           animate={{ scale: 1 }}
           className="text-center bg-white/30 backdrop-blur-lg p-10 rounded-3xl shadow-2xl max-w-xl"
         >
-          <div className="text-7xl mb-6">💖🥰🎉</div>
+          <div className="text-7xl mb-6">🎉</div>
+          <img src="./joey.gif" alt="joey" className="rounded-3xl mb-2 border-2 border-pink-600" />
 
-          <h1 className="text-5xl font-black text-pink-600 mb-4">
+          {/* <h1 className="text-5xl font-black text-pink-600 mb-4">
             YOU SAID YESSSS! I KNEW ITT
-          </h1>
+          </h1> */}
 
           <p className="text-2xl text-gray-700 mb-4">
             See you on <b>{date}</b> at <b>{time}</b>
