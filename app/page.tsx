@@ -43,7 +43,7 @@ const launchConfetti = () => {
     <main className="min-h-screen bg-linear-to-br from-pink-200 via-rose-100 to-purple-200 flex items-center justify-center md:p-6 overflow-hidden">
       {!accepted ? (
       <Landing launchConfetti={launchConfetti} setAccepted={setAccepted} />
-      ) : submitted ? (
+      ) : !submitted ? (
         <DatePlanner date={date} time={time} setDate={setDate} setTime={setTime} setSubmitted={setSubmitted} launchConfetti={launchConfetti} />
       ):!altScenario?(    
       <SuccessTimeline  date={date} time={time} setAltScenario={setAltScenario} />
