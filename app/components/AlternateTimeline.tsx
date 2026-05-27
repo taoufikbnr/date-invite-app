@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const AlternateTimeline = () => {
@@ -36,7 +37,6 @@ useEffect(() => {
   "💘 CUPID: ‘I swear I had aim assist on’",
   "🤖 CHAOS ENGINE: now running relationship decisions",
   "🚨 NO RESPONSE UNIT: escaped and refusing cooperation",
-  "📅 TIMELINE: still pretending everything is fine",
 ];
   if (ranOnce.current) return;
   ranOnce.current = true
@@ -85,17 +85,19 @@ if (progress === 100) {
     <motion.div
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: 1 }}
-  className="text-center bg-black text-white p-10 rounded-3xl shadow-2xl max-w-2xl"
->
-  <h1 className="text-4xl font-black mb-4">
+    className="text-center bg-black text-white
+      w-full max-w-2xl
+      p-4 sm:p-6 md:p-10
+       sm:rounded-3xl
+      shadow-2xl
+      mx-4 sm:mx-auto">
+  <h1 className="md:text-2xl font-black mb-4">
     ⚠️ ALT TIMELINE ACTIVATED
   </h1>
 
-  <p className="text-lg mb-6 text-gray-300">
+  <p className="text-lg mb-4 text-gray-300">
     You said YES… but the universe did NOT update correctly.
   </p>
-
-  <div className="text-6xl mb-6">🌀💔💥</div>
 
 <div className="flex justify-center">
   <div className="bg-black/80 text-green-300 p-4 rounded-xl font-mono text-sm overflow-hidden space-y-1 text-left w-full max-w-md">
@@ -112,12 +114,14 @@ if (progress === 100) {
   </div>
 </div>
 
-  <div className="my-6">
-    <img
-      src="./cry.gif"
-      className="mx-auto rounded-xl w-40"
-      alt="cry"
-    />
+  <div className="my-6 flex items-center justify-center">
+    <Image
+        src="/cry.gif"
+        alt="cry"
+        width={200}
+        height={200}
+        className="rounded-3xl mb-2 border-2 border-pink-600"
+        />
   </div>
 
   <p className="text-gray-300 mb-6">
@@ -132,13 +136,13 @@ if (progress === 100) {
   </div>
 
   <div className="flex justify-center gap-4">
-    {/* GIF SLOT 2 */}
-    <img
-      src="./bye.gif"
-      className="w-32 rounded-lg"
-      alt="cat error"
-    />
-
+    <Image
+        src="/bye.gif"
+        alt="bye"
+        width={200}
+        height={200}
+        className="rounded-3xl mb-2 border-2 border-pink-600"
+        />
   </div>
 {shuttingDown && (
   <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white">
