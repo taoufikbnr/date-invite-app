@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "escape-no-button"
-  }
+    "default": "yes-or-none",
+    "prod": "yes-or-none"
+  },
+  "targets": {},
+  "etags": {}
 }
