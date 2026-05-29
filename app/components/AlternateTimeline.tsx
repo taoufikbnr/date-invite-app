@@ -7,7 +7,7 @@ const ranOnce = useRef(false);
 const [logsList, setLogsList] = useState<string[]>([]);
 const [progress, setProgress] = useState(0);
 const [shuttingDown, setShuttingDown] = useState(false);
-const [secondsLeft, setSecondsLeft] = useState(20);
+const [secondsLeft, setSecondsLeft] = useState(15);
 
 
 const startShutdown = () => {
@@ -63,7 +63,7 @@ useEffect(() => {
 useEffect(() => {
   const timer = setTimeout(() => {
     startShutdown();
-  }, 20000); 
+  }, 15000); 
 
   return () => clearTimeout(timer);
 }, []);

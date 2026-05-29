@@ -32,11 +32,15 @@ const SuccessTimeline = ({date,time,setAltScenario}:SuccessTimelineProps) => {
           <p className="text-lg text-gray-600">
             The council of romance approves this decision 💘
           </p>
+            <p className="text-2xl my-3">
+              👇🏿
+            </p>
+
           <button
               onClick={() => setAltScenario(true)}
-              className="mt-6 px-6 py-3 bg-black text-white rounded-xl font-bold hover:scale-105 transition"
+              className="px-6 py-3 bg-linear-to-r from-purple-800 cursor-pointer to-black text-white rounded-xl font-bold hover:scale-105 transition"
             >
-              Show alternate timeline 😈
+              Show alternate timeline 😭
             </button>
         </motion.div>
   )
