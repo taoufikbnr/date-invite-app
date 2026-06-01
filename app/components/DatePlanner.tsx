@@ -63,10 +63,10 @@ const handleSubmit = async () => {
     return;
   }
 
-  const { error } = await supabase.from("dates").insert([
+  const { error } = await supabase.from("invitations ").insert([
     {
-      date,
-      time,
+      selected_date:date,
+      selected_time:time,
       activities: selectedActivities,
     },
   ]);
