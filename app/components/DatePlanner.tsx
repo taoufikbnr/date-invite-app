@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { sendDateEmail } from "../actions/send-email";
 
 type DatePlannerProps = {
     date:string
@@ -9,9 +10,10 @@ type DatePlannerProps = {
     setTime:React.Dispatch<React.SetStateAction<string>>
     setSubmitted:React.Dispatch<React.SetStateAction<boolean>>
     launchConfetti:()=>void
+    invitationId?:string
 }
 
-const DatePlanner = ({date,time,setDate,setTime,setSubmitted,launchConfetti}:DatePlannerProps) => {
+const DatePlanner = ({date,time,setDate,setTime,setSubmitted,launchConfetti,invitationId}:DatePlannerProps) => {
     const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
     const activities = [
       { emoji: "🍕", label: "Food Date" },
@@ -63,20 +65,58 @@ const handleSubmit = async () => {
     return;
   }
 
-  const { error } = await supabase.from("invitations ").insert([
-    {
-      selected_date:date,
-      selected_time:time,
-      activities: selectedActivities,
-    },
-  ]);
+  let error = null;
 
-  if (!error) {
-    setSubmitted(true);
-    launchConfetti();
-  } else {
-    alert("Something broke 😭");
+  if (invitationId) {
+  const { data, error } = await supabase
+    .from("invite")
+    .update({
+      status: "accepted",
+      selected_date: date,
+      selected_time: time,
+      activities: selectedActivities,
+    })
+    .eq("id", invitationId)
+    .select("creator_email")
+    .single();
+
+  if (error) {
+    console.error("DB ERROR:", error);
+    return;
   }
+
+  try {
+    await sendDateEmail({
+      to: data?.creator_email,
+      date,
+      time,
+      activities: selectedActivities,
+    });
+  } catch (e) {
+    console.error("Email failed", e);
+  }
+} else {
+    const result = await supabase
+      .from("invitations") 
+      .insert([
+        {
+          selected_date: date,
+          selected_time: time,
+          activities: selectedActivities,
+        },
+      ]);
+
+    error = result.error;
+  }
+
+  if (error) {
+    console.error(error);
+    alert("Something broke");
+    return;
+  }
+
+  setSubmitted(true);
+  launchConfetti();
 };
   return (
             <motion.div
@@ -85,7 +125,7 @@ const handleSubmit = async () => {
           className="bg-white/30 backdrop-blur-lg p-8 rounded-3xl shadow-2xl max-w-2xl w-full"
         >
           <h2 className="text-4xl font-black text-center text-pink-600 mb-8">
-            <span className="text-purple-700">YAYYYYY</span>  I KNEW YOU WOULD  SAY YES <img width={50} src={"./pedro-monkey-puppet.gif"} alt="monkey" className="inline-block rounded-2xl"
+            <span className="text-purple-700">YAYYYYY</span>  I KNEW YOU WOULD  SAY YES <img width={50} src={"/pedro-monkey-puppet.gif"} alt="monkey" className="inline-block rounded-2xl"
  />
           </h2>
 
